@@ -1,0 +1,11 @@
+language: python
+branches:
+  only:
+  - pelican
+install:
+- pip install -r requirements.txt
+script:
+- make travis
+env:
+  global:
+  - secure: XG4TuLhg7shcvZX85yHJsrQuov2MR5pWiMboE9DmH4rWj2Mo3cmAta0hwnfY5cyqF/sXOtob+owugcgS7CU4LBozfaRKpDa5S9x6mk+/OUpJwoIPGUnSngXAoXx0t8TLrn9awK3+fCIGJdP0igEgbzWjwu5eek77egAzE14sXFE=
