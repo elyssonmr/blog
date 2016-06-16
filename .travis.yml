@@ -1,7 +1,7 @@
 language: python
 branches:
   only:
-  - pelican
+  - master
 install:
 - pip install -r requirements.txt
 script:
