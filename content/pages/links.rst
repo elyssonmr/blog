@@ -24,4 +24,4 @@ I'm using `Digital Ocean <https://www.digitalocean.com/>`_ for hosting all my cl
 
 Digital Ocean is cheap and really great!!!
 
-How about give it a try? Registering `here <https://www.digitalocean.com/?refcode=c8949f47a1c0>`_ you earn 10$ credits, currently 2 months in cheapest instance.
+How about give it a try? Registering `here <https://m.do.co/c/33d7ae5ae3aa>`_ you earn 10$ credits, currently 2 months in cheapest instance.
