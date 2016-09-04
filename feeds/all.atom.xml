@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Élysson MR</title><link href="http://elyssonmr.com/blog/" rel="alternate"></link><link href="http://elyssonmr.com/blog/feeds/all.atom.xml" rel="self"></link><id>http://elyssonmr.com/blog/</id><updated>2015-12-21T00:00:00-02:00</updated><entry><title>Enabling Disqus on your Pelican blog</title><link href="http://elyssonmr.com/blog/pelican-disqus.html" rel="alternate"></link><published>2015-12-21T00:00:00-02:00</published><author><name>Élysson MR</name></author><id>tag:elyssonmr.com,2015-12-21:blog/pelican-disqus.html</id><summary type="html">&lt;p&gt;Disqus enables people register using their cendential of &lt;a class="reference external" href="https://twitter.com_"&gt;Twitter&lt;/a&gt;, &lt;a class="reference external" href="https://facebook.com_"&gt;Facebook&lt;/a&gt;, &lt;a class="reference external" href="https://google.com_"&gt;Google&lt;/a&gt; or &lt;a class="reference external" href="https://disqus.com_"&gt;Disqus&lt;/a&gt; to comment blog posts.
+If you are using &lt;a class="reference external" href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt; to generate a blog, using Disqus is really simple, just have to add some cinfiguration. All Pelican's standard themes are ready to use with Disqus, maybe all &lt;a class="reference external" href="http://www.pelicanthemes.com/"&gt;downloadable themes&lt;/a&gt; are ready to be used with Disqus.&lt;/p&gt;
+
+&lt;p&gt;The First step is create a Disqus account, just access &lt;a class="reference external" href="https://disqus.com/admin/signup/"&gt;their site&lt;/a&gt; and create a account. Now we need to register disqus to be used in a blog. Open the &lt;a class="reference external" href="https://publishers.disqus.com/engage/"&gt;Disqus Engage&lt;/a&gt; then click in &amp;quot;Starting using Engage&amp;quot; you should be redirected to a form, fill this form using your blog info and click &amp;quot;Finish registration&amp;quot;. Remmember the value you put in Disqus URL, we are going to use this value to configure our Pelican Blog. We are done in Disqus for now.&lt;/p&gt;
+&lt;p&gt;After you create your pelican blog, open your &amp;quot;pelicanconf.py&amp;quot; and add a new configuration line:&lt;/p&gt;
+&lt;pre class="code python literal-block"&gt;
+&lt;span class="n"&gt;DISQUS_SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'DISQUS_URL_VALUE'&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;We just that configuration to let visitors add their comments and start dicscussion inside a blog post, pelican engine takes care of all the rest for us during the site generation. Note that comments are not avaliable in developing server, you need to publish to see it.&lt;/p&gt;
+&lt;p&gt;Access your published blog to see the comments session like this:&lt;/p&gt;
+&lt;img alt="Comments Image" class="align-right" src="images/comments.png" style="width: 100.0%; height: 300.0px;" /&gt;
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://help.disqus.com/customer/portal/articles/466179-what-is-disqus-"&gt;What is Disqus&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://querbalken.net/howto-setup-comments-with-disqus-in-pelican-en.html"&gt;Howto Setup Comments with Disqus in Pelican&lt;/a&gt;&lt;/p&gt;
+</summary><category term="Pelican"></category><category term="Disqus"></category></entry><entry><title>What is Pelican?</title><link href="http://elyssonmr.com/blog/what-is-pelican.html" rel="alternate"></link><published>2015-12-14T00:00:00-02:00</published><author><name>Élysson MR</name></author><id>tag:elyssonmr.com,2015-12-14:blog/what-is-pelican.html</id><summary type="html">&lt;p&gt;Pelican is a static site generator, written in &lt;a class="reference external" href="www.python.org"&gt;Python&lt;/a&gt;, that requires no database or server-side logic. Contents are written using &lt;a class="reference external" href="http://docutils.sourceforge.net/rst.html"&gt;reStructuredText&lt;/a&gt;, &lt;a class="reference external" href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt; (requires additional libriries) or &lt;a class="reference external" href="http://www.methods.co.nz/asciidoc/"&gt;AsciiDoc&lt;/a&gt; formats.&lt;/p&gt;
+
+&lt;p&gt;Advantages of using pelican:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Generate static site running just one command to easy host anywhere (its output is just static files).&lt;/li&gt;
+&lt;li&gt;You can choose one of theme in &lt;a class="reference external" href="https://github.com/getpelican/pelican-themes"&gt;theme collection&lt;/a&gt;, personalize it or create your own theme using &lt;a class="reference external" href="http://jinja.pocoo.org/"&gt;Jinja&lt;/a&gt; templates.&lt;/li&gt;
+&lt;li&gt;Generated site can be published in many languages.&lt;/li&gt;
+&lt;li&gt;Generates atom/RSS feeds.&lt;/li&gt;
+&lt;li&gt;Developer blog? Use a code syntax highlight on your publications.&lt;/li&gt;
+&lt;li&gt;Migrations tools to import contents from WordPress, Dotclear, RSS Feed and some other services.&lt;/li&gt;
+&lt;li&gt;Many &lt;a class="reference external" href="https://github.com/getpelican/pelican-plugins"&gt;plugins&lt;/a&gt; to enchance site experience.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And many other things...&lt;/p&gt;
+&lt;div class="section" id="installation"&gt;
+&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Pelican can be installed using pip. Just run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install pelican markdown
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Some plugins requires additional packages read their documentation to find out what should be installed too.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="starting-a-pelican-site"&gt;
+&lt;h2&gt;Starting a Pelican Site&lt;/h2&gt;
+&lt;p&gt;First, create a directory for the project, remmember to choose a apropriate name:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir -p ~/projects/pelican-powered-site
+&lt;span class="nb"&gt;cd&lt;/span&gt; ~/projects/pelican-powered-site
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To create project's skeleton run pelican's quickstart command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pelican-quickstart
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Some questions are going to ask to pre-configure the site.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="creating-a-article"&gt;
+&lt;h2&gt;Creating a Article&lt;/h2&gt;
+&lt;p&gt;Before run pelican we need to ad some content to our site. Using one text editor wite this down:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Title: My First Review
+Date: 2010-12-03 10:20
+Category: Review
+
+Following is a review of my favorite mechanical keyboard.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The example article is written in Markdown syntax. Save the file in:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~/projects/pelican-powered-site/content/keyboard-review.md
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="generating-and-running-the-site"&gt;
+&lt;h2&gt;Generating and running the site&lt;/h2&gt;
+&lt;p&gt;From the site's directory run this command to generate our site:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pelican content
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After the command end all site files has been generated inside &amp;quot;output&amp;quot; folder. To preview it execute:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/projects/pelican-powered-site/output
+python -m pelican.server
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That's all Folks!! Now we got a static site generated with one simple article.&lt;/p&gt;
+&lt;p&gt;For more information read &lt;a class="reference external" href="http://docs.getpelican.com/en/3.6.3/index.html"&gt;pelican's documentation&lt;/a&gt; and check its &lt;a class="reference external" href="https://github.com/getpelican/pelican/wiki/Tutorials"&gt;community tutorials&lt;/a&gt;. This article content is based in pelican's &lt;a class="reference external" href="http://docs.getpelican.com/en/3.6.3/quickstart.html"&gt;quickstart&lt;/a&gt; article.&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h3&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://docs.getpelican.com/en/3.6.3/index.html"&gt;Pelican's Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/getpelican/pelican/wiki/Tutorials"&gt;Pelican's Tutorials&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/getpelican/pelican-plugins"&gt;Pelican's Plugins&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="Pelican"></category></entry></feed>
