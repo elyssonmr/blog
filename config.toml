@@ -1,0 +1,64 @@
+baseURL = 'http://example.org/'
+languageCode = 'pt-br'
+title = 'Blog do Ely'
+
+theme = 'Hugo-Octopress'
+generateTaxonomyList = true
+sortTaxonomyAlphabetical = true
+authorname = 'Élysson MR'
+
+# MARKUP
+[markup]
+  [markup.tableOfContents]
+    endLevel = 3
+    startLevel = 1
+  [markup.highlight]
+    style = "solarized-dark"
+
+# MAIN MENU
+
+[[menu.main]]
+  Name = "Home"
+  URL = "/"
+  weight = -10
+
+[params]
+  favicon = "favicon.ico"
+  subtitle = 'Um pouco do pouco que conheço'
+  
+  # TOC
+  tableOfContents = true
+  navigationNewWindow = true
+
+  # SIDEBAR
+  sidebarHeader = "Bio"
+  sidebarText = """Desenvolvedor de Software que já trabalhou em todo o ciclo de
+  desenvolvimento. Hoje estou focando mais em arquitetura e quero compartilhar
+  com vocês um pouco do que eu aprendi na minha tragetória.
+
+  Um dos meus objetivos é montar cursos em meu canal do youtube. Peço que se
+  inscreva para ficar por dentro das novidades
+    """
+  github = "https://github.com/elyssonmr"
+  gitlab = ""
+  twitter = "https://twitter.com/elyssonmr"
+  linkedin = "https://linkedin.com/in/elyssonmr"
+  youtube = "https://www.youtube.com/@elyssonmr"
+  sidebarMenuEnabled = false
+
+[[menu.sidebar]]
+  Name = "Desenvolvimento"
+  URL = "/categories/desenvolvimento/"
+  weight = 0
+
+[[menu.sidebar]]
+  Name = "Ferramentas"
+  URL = "/categories/ferramentas/"
+  weight = 1
+
+[[menu.sidebar]]
+  Name = "Técnicas"
+  URL = "/categories/tecnicas/"
+  weight = 1
+
+sidebarRecentLimit = 5
