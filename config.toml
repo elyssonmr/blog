@@ -2,7 +2,7 @@ baseURL = 'http://example.org/'
 languageCode = 'pt-br'
 title = 'Blog do Ely'
 
-theme = 'Hugo-Octopress'
+theme = 'mainroad'
 generateTaxonomyList = true
 sortTaxonomyAlphabetical = true
 authorname = 'Élysson MR'
