@@ -6,6 +6,7 @@ theme = 'mainroad'
 generateTaxonomyList = true
 sortTaxonomyAlphabetical = true
 authorname = "Élysson MR"
+favicon = "img/favicon.ico"
 
 DisqusShortname = "elyssonmr-blog"
 googleAnalytics = "G-JVL66Z9J82"
@@ -26,12 +27,8 @@ googleAnalytics = "G-JVL66Z9J82"
   weight = -10
 
 [params]
-  favicon = "favicon.ico"
-  subtitle = 'Um pouco do pouco que conheço'
-  
   # TOC
-  tableOfContents = true
-  navigationNewWindow = true
+  toc = true
 
   # SIDEBAR
   sidebarHeader = "Bio"
@@ -48,20 +45,54 @@ googleAnalytics = "G-JVL66Z9J82"
   linkedin = "https://linkedin.com/in/elyssonmr"
   youtube = "https://www.youtube.com/@elyssonmr"
   sidebarMenuEnabled = false
+  twitter_cards = true
+  readmore = true
+  pager = true
+  post_meta = ["author", "date", "categories", "translations"]
 
-[[menu.sidebar]]
-  Name = "Desenvolvimento"
-  URL = "/categories/desenvolvimento/"
-  weight = 0
+[Params.logo]
+  image = "img/favicon.ico"
+  title = "Blog do Ely"
+  subtitle = "Um pouco do pouco que conheço"
 
-[[menu.sidebar]]
-  Name = "Ferramentas"
-  URL = "/categories/ferramentas/"
-  weight = 1
+[Params.thumbnail]
+  visibility = ["list", "post"]
 
-[[menu.sidebar]]
-  Name = "Técnicas"
-  URL = "/categories/tecnicas/"
-  weight = 1
+[Params.sidebar]
+  home = "right" # Configure layout for home page
+  list = "left"  # Configure layout for list pages
+  single = false # Configure layout for single pages
+  # Enable widgets in given order
+  widgets = ["search", "recent", "categories", "taglist", "social"]
+
+[Params.widgets]
+  recent_num = 5 # Set the number of articles in the "Recent articles" widget
+  tags_counter = false # Enable counter for each tag in "Tags" widget (disabled by default)
+
+[Params.widgets.search]
+  cached = false # activate cache if true
+  url = "https://google.com/search"
+  [Params.widgets.search.input]
+    name = "procurar no site"
+    pre = ""
+
+[Params.widgets.social]
+  cached = false # activate cache if true
+  # Enable parts of social widget
+  twitter = "elyssonmr"
+  linkedin = "elyssonmr"
+  github = "elyssonmr"
+  gitlab = "elyssonmr"
+
+[[Params.widgets.social.custom]]
+  title = "Youtube"
+  url = "https://youtube.com/@elyssonmr"
+  icon = "svg/youtube.svg"
+  rel = "noopener noreferrer" # Set to false to remove the rel attribute
+
+[[Params.widgets.social.custom]]
+  title = "Minha página"
+  icon = "svg/author.svg"
+  url = "http://elyssonmr.com"
 
 sidebarRecentLimit = 5
