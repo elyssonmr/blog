@@ -1,11 +1,14 @@
-baseURL = 'http://example.org/'
-languageCode = 'pt-br'
-title = 'Blog do Ely'
+baseURL = "http://elyssonmr.com/blog/"
+languageCode = "pt-br"
+title = "Blog do Ely"
 
 theme = 'mainroad'
 generateTaxonomyList = true
 sortTaxonomyAlphabetical = true
-authorname = 'Élysson MR'
+authorname = "Élysson MR"
+
+DisqusShortname = "elyssonmr-blog"
+googleAnalytics = ""
 
 # MARKUP
 [markup]

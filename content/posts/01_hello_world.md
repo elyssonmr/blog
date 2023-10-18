@@ -5,6 +5,7 @@ draft: false
 toc: false
 comments: false
 slug: hello_word
+comments: true
 ---
 
 Oi pessoal, aqui é o Ely. Estou reativando o meu blog utilizando o
