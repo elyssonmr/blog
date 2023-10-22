@@ -1,4 +1,4 @@
-baseURL = "http://elyssonmr.com/blog/"
+baseURL = "/"
 languageCode = "pt-br"
 title = "Blog do Ely"
 
@@ -26,7 +26,7 @@ googleAnalytics = "G-JVL66Z9J82"
   URL = "/"
   weight = -10
 
-[params]
+[Params]
   # TOC
   toc = true
 
@@ -48,7 +48,7 @@ googleAnalytics = "G-JVL66Z9J82"
   twitter_cards = true
   readmore = true
   pager = true
-  post_meta = ["author", "date", "categories", "translations"]
+  post_meta = ["date"]
 
 [Params.logo]
   image = "img/favicon.ico"
@@ -73,7 +73,7 @@ googleAnalytics = "G-JVL66Z9J82"
   cached = false # activate cache if true
   url = "https://google.com/search"
   [Params.widgets.search.input]
-    name = "procurar no site"
+    name = "sitesearch"
     pre = ""
 
 [Params.widgets.social]

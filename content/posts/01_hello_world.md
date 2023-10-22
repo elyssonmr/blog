@@ -4,8 +4,13 @@ date: 2023-10-15T23:31:36-03:00
 draft: false
 toc: false
 comments: false
-slug: hello_word
+slug: 01_hello_world
 comments: true
+thumbnail:
+  src: "img/posts/01_helloworld/thumbnail.png"
+  visibility:
+    - list
+sidebar: true
 ---
 
 Oi pessoal, aqui é o Ely. Estou reativando o meu blog utilizando o
