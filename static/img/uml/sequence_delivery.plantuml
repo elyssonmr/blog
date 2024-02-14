@@ -1,0 +1,26 @@
+@startuml Fluxo Entrega Pedidos
+
+hide footbox
+
+title Fluxo Entrega Pedidos
+actor Cliente
+participant Pedidos
+participant Entregas
+actor Entregador
+autonumber
+
+loop Pedidos prontos
+    Pedidos->Entregas: Informa que há uma entrega disponível
+end
+note over Pedidos, Entregas
+    Processo abaixo ocorre de forma assíncrona
+end note
+Entregador->Entregas: Consulta entregas disponíveis
+Entregador->Entregador: Busca os pedidos na Lanchonete
+loop Em cada Pedido
+    Entregador->Entregador: Vai até o endereço do cliente
+    Entregador->Cliente: Entrega pedido para o cliente
+    Entregador->Entregas: Confirma entrega
+end
+
+@enduml
