@@ -1,0 +1,12 @@
+<figure>
+  <img
+    src="{{ absURL ""}}{{ .Get "src" }}"
+    title="{{ .Get "title" }}"
+    alt="{{ .Get "title" }}"
+  >
+  {{ if .Get "legend" }}
+    <figcaption>
+      <p>{{ .Get "legend" }}</p>
+    </figcaption>
+  {{ end }}
+</figure>
