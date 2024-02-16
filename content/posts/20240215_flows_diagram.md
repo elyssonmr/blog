@@ -28,7 +28,7 @@ O cenário vai ser um site de delivery de delivery de comida. Os clientes irão 
 
 Essa arquitetura pode ser representada de acordo com o diagrama de contexto do C4 a seguir:
 
-{{< figure src="img/posts/20240215_flows_diagram/initial_c4.png" title="Diagrama C4 Inicial" >}}
+{{< figure src="/img/posts/20240215_flows_diagram/initial_c4.png" title="Diagrama C4 Inicial" >}}
 
 **OBS**: Talvez neste cenário não seja necessário utilizar micro-serviços. Não iremos entrar neste mérito aqui. O cenário é somente para ilustrar o objetivo de mostrar os fluxos.
 
@@ -40,7 +40,7 @@ Antes de iniciarmos a falar sobre eles, eu gostaria de ressaltar que não estou 
 
 O primeiro que vamos exemplificar é de um cliente acessando o site para escolher um prato e realizar o pedido. Este fluxo não irá envolver somente micro-serviços, também será envolvido o cliente e os sistemas externos que processam o pagamento. Não iremos considerar os funcionários da lanchonete pois cada lanchonete pode ter um processo muito distinto, ok??
 
-{{< figure src="img/posts/20240215_flows_diagram/order_flow.png" title="Fluxo Pedido" >}}
+{{< figure src="/img/posts/20240215_flows_diagram/order_flow.png" title="Fluxo Pedido" >}}
 
 Breve explicação do fluxo:
 1. O *Cliente* acessou o site do *LanchePlus* para escolher um lanche
@@ -59,7 +59,7 @@ O que você achou deste fluxo? Acha que se você tivesse essa visão conseguiria
 
 Vamos expecificar melhor uma das etapas do fluxo? Podemos pegar a primeira etapa (cliente escolhendo o prato que irá comprar). Vou tentar descrever o máximo possível as etapas:
 
-{{< figure src="img/posts/20240215_flows_diagram/order_detail.png" title="Fluxo pedido Detalhado" >}}
+{{< figure src="/img/posts/20240215_flows_diagram/order_detail.png" title="Fluxo pedido Detalhado" >}}
 
 Breve explicação do fluxo:
 
@@ -90,7 +90,7 @@ Outra coisa que não estamos considerando no fluxo são cenários alternativos. 
 
 Vamos para o último Fluxo? Este eu vou desenhar referenciado o processo de entrega, porém não darei muitos detalhes. Te desafio a desenhar o fluxo com detalhes e postar o link dele nos comentários, combinado?? ;)
 
-{{< figure src="img/posts/20240215_flows_diagram/delivery_flow.png" title="Fluxo Entrega" >}}
+{{< figure src="/img/posts/20240215_flows_diagram/delivery_flow.png" title="Fluxo Entrega" >}}
 
 O fluxo de entrega é um pouco mais simples. Breve explicação do fluxo:
 
