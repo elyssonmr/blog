@@ -5,7 +5,7 @@ draft: false
 sidebar: true
 slug: 2024_02_15_flow_diagram
 thumbnail:
-  src: "/img/posts/20240215_flows_diagram/thumbnail.jpg"
+  src: "img/posts/20240215_flows_diagram/thumbnail.jpg"
   visibility:
     - list
 categories:
