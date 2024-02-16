@@ -1,6 +1,8 @@
+{{ $url_path := absURL ""}}
+{{ $relative_url := .Get "src" }}
 <figure>
   <img
-    src="{{ absURL ""}}{{ .Get "src" }}"
+    src="{{ urls.JoinPath $url_path $relative_url }}"
     title="{{ .Get "title" }}"
     alt="{{ .Get "title" }}"
   >
