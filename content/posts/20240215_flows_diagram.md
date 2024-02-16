@@ -28,7 +28,7 @@ O cenário vai ser um site de delivery de delivery de comida. Os clientes irão 
 
 Essa arquitetura pode ser representada de acordo com o diagrama de contexto do C4 a seguir:
 
-![Diagram C4 Inicial](/blog/img/posts/20240215_flows_diagram/initial_c4.png)
+{{< figure src="/img/posts/20240215_flows_diagram/initial_c4.png" title="Diagrama C4 Inicial" >}}
 
 **OBS**: Talvez neste cenário não seja necessário utilizar micro-serviços. Não iremos entrar neste mérito aqui. O cenário é somente para ilustrar o objetivo de mostrar os fluxos.
 
