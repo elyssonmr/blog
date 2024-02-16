@@ -28,16 +28,16 @@ o pouco que conheço com vocês. Hoje estou atuando mais com assuntos de
 Arquitetura de Software e provavelmente vou falar mais sobre isso.
 
 Também gostaria de criar conteúdo no meu canal do youtube. Estou ainda pensando
-um pouco no formato, mas é bem provavel que crie alguns mini cursos sobre
+um pouco no formato, mas é bem provável que crie alguns mini cursos sobre
 assuntos mais técnicos e também sobre outros assuntos que faz parte do meu dia
 a dia, como finanças. Alguns materiais vão ser disponibilizados aqui no blog.
-Não esqueça de se increver no meu canal para ficar por dentro do que está
+Não esqueça de se inscrever no meu canal para ficar por dentro do que está
 rolando.
 
 
 # Qual a frequência?
 
-Por enquanto não pensei bem em uma frequencia, mas a medida que for conseguindo
+Por enquanto não pensei bem em uma frequência, mas a medida que for conseguindo
 me organizar e tornar a escrita um hábito, eu vou tentar criar novos posts com
 uma certa frequência.
 
