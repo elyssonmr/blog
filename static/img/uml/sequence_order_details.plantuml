@@ -1,0 +1,37 @@
+@startuml Fluxo Entrega Lanche
+
+hide footbox
+
+title Fluxo Escolha de um Prato
+actor Cliente
+participant Pedidos
+autonumber
+Cliente->Pedidos: Acessa o site para escolher um prato
+Pedidos->Cliente: Retorna página principal
+Cliente->Pedidos: Acessa catalogo de pratos
+Pedidos->Cliente: Retorna catalogo de pratos
+loop Escolha de pratos
+    Cliente->Pedidos: Adiciona prato no Carrinho
+    Pedidos->Cliente: Prato adicionado
+end
+Cliente->Pedidos: Acessa o carrinho
+Pedidos->Cliente: Retorna tela com o resumo do carrinho
+Cliente->Cliente: Verifica se todos pratos estão corretos
+Cliente->Pedidos: Seleciona o meio de pagamento
+opt Cartão de crédito
+    Pedidos->Cliente: Exibe formulário para preenchimento do cartão
+    Cliente->Pedidos: Preenche dados do cartão
+    Cliente->Pedidos: Confirma meio de pagamento
+end
+Cliente->Pedidos: Clicka em "Pedir"
+note over Cliente, Pedidos
+    Detalhes do processamento do pagamento foram omitidos
+end note
+opt Pix
+    Pedidos->Cliente: Exibe QRCOde
+    Cliente->Cliente: Escaneia QRCode para realizar o pagamento
+    Pedidos->Pedidos: Aguarda pagamento do cliente
+end
+Pedidos->Cliente: Exibe uma mensagem indicando que o pedido foi realizado
+
+@enduml

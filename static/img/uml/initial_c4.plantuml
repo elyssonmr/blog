@@ -1,0 +1,34 @@
+@startuml
+!include <C4/C4_Container>
+
+LAYOUT_WITH_LEGEND()
+
+Person(cliente, "Cliente", "Compra refeições")
+
+Enterprise_Boundary(sistema_lanche_plus, "LanchePlus") {
+     System_Boundary(sistema_pagamentos, "Sistema de pagamentos", ?index=1){
+        Container(pagamentos, "Pagamentos", "Python, Django", "Realiza os pagamentos no cartão de crédito de pedidos realizados pelos clientes.")
+        ContainerDb(pagamentos_db, "Banco de dados de Pagamentos", "MySQL", "Armazena os dados referente aos pagamentos realizados.")
+        Rel(pagamentos, pagamentos_db, "Lê/Escreve")
+    }
+    System_Boundary(sistema_pedidos, "Sistema de Pedidos"){
+        Container(pedidos, "Pedidos", "Python, Django", "Permite os clientes escolher e realizar pedidos de pratos.")
+        ContainerDb(pedidos_db, "Banco de dados Pedido", "MySQL", "Armazena pedidos feitos e seus status.")
+        Rel(pedidos, pedidos_db, "Lê/Escreve")
+    }   
+    System_Boundary(sistema_entregas, "Sistema de Entregas", ?index=3){
+        Container(entregas, "Entregas", "Python, Django", "Cuida de toda a logistica necessária para que os entregadores possam entregar os pedidos.")
+        ContainerDb(entregas_db, "Banco de dados de Entregas", "MySQL", "Armazena os dados referente as entregas realizadas.")
+        Rel(entregas, entregas_db, "Lê/Escreve")
+    }
+}
+
+Container_Ext(adquirente, "Processador de Cartão", "Processadora responśavel pelas efetiva cobrança de cartão.")
+Container_Ext(pix, "Processador de PIX", "Processadora pela cobrança via PIX.")
+
+Rel_R(pagamentos, adquirente, "Cobra cartão do cliente")
+Rel_D(pagamentos, pix, "Gera e cobra PIX do cliente")
+Rel_R(pedidos, entregas, "Solicita Entrega Pedido", "HTTPS")
+Rel_L(pedidos, pagamentos, "Pagamento do pedido pelo cliente", "HTTPS")
+Rel(cliente, pedidos, "Utiliza", "HTTPS")
+@enduml

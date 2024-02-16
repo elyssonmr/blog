@@ -1,0 +1,22 @@
+@startuml Fluxo Pedido Lanche
+
+hide footbox
+
+title Fluxo Pedido de um Prato
+actor Cliente
+participant Pedidos
+participant Pagamentos
+autonumber
+Cliente->Pedidos: Acessa o site para escolher um prato
+Cliente->Pedidos: Escolhe um dos pratos disponíveis
+Cliente->Pedidos: Escolhe a forma da pagamento
+Pedidos->Pagamentos: Solicita pagamento
+Pagamentos->Pagamentos: Salva informações do pagamento
+opt Pagamento Cartão
+    Pagamentos->ProcessadorCartao: Solicita cobrança do cartão do cliente
+else Pagamento Pix
+    Pagamentos->ProcessadorPix: Solicita cobrança via PIX
+end
+Pagamentos->Pedidos: Pagamento Realizado
+Pedidos->Cliente: Pedido Realizado
+@enduml
