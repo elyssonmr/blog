@@ -26,7 +26,7 @@ Para poder ficar mais simples de entender, vou utilizar um cenário para desenha
 
 O cenário vai ser um site de delivery de delivery de comida. Os clientes irão acessar o site para realizar selecionar quais pratos desejam, realizar o pedido e pagar pelo pedido. O nome fictício do nosso site será **LanchePlus** (usei esse nome em um sistema durante minha última experiência dando aula). Além disso vamos nos conectar com sistemas externos para poder realizar as cobranças dos pedidos dos clientes.
 
-Essa arquitetura pode ser representada de acordo com o diagrama de contexto do C4 a seguir:
+Essa arquitetura pode ser representada de acordo com o Diagrama de Containers (nível 2) do C4 a seguir:
 
 {{< figure src="/img/posts/20240215_flows_diagram/initial_c4.png" title="Diagrama C4 Inicial" >}}
 
