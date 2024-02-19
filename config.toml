@@ -49,6 +49,7 @@ googleAnalytics = "G-JVL66Z9J82"
   readmore = true
   pager = true
   post_meta = ["date"]
+  customCSS = ["css/custom.css"]
 
 [Params.logo]
   image = "img/favicon.ico"

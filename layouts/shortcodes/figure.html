@@ -1,14 +1,25 @@
+{{ $res_img := page.Resources.GetMatch (.Get "src") }}
 {{ $url_path := absURL ""}}
 {{ $relative_url := .Get "src" }}
+
+{{ $url := ""}}
+
+{{ if $res_img }}
+  {{ $url = $res_img.RelPermalink }}
+{{ else }}
+  {{ $url = urls.JoinPath $url_path $relative_url }}
+{{ end }}
+
+
 <figure>
   <img
-    src="{{ urls.JoinPath $url_path $relative_url }}"
-    title="{{ .Get "title" }}"
+    src="{{ $url }}"
     alt="{{ .Get "title" }}"
+    title="{{ .Get "title" }}"
   >
   {{ if .Get "legend" }}
     <figcaption>
-      <p>{{ .Get "legend" }}</p>
+      <p class="text-center">{{ .Get "legend" }}</p>
     </figcaption>
   {{ end }}
 </figure>
