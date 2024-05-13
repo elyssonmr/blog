@@ -1,0 +1,14 @@
+{{ $rest_asset := page.Resources.GetMatch (.Get "src") }}
+{{ $url_path := absURL ""}}
+{{ $relative_url := .Get "src" }}
+
+{{ $url := ""}}
+
+{{ if $rest_asset }}
+  {{ $url = $rest_asset.RelPermalink }}
+{{ else }}
+  {{ $url = urls.JoinPath $url_path $relative_url }}
+{{ end }}
+
+
+<a target="_blank" href="{{ $url }}">{{ .Get "title"}}</a>
