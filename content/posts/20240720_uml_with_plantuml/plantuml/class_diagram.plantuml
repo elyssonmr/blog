@@ -1,0 +1,29 @@
+@startuml
+title "Diagrama de classes exemplificando o módulo de notificação"
+
+class Message {
+  -formated_message: str
+  -chat_id: str
+  -to: str
+}
+
+class GChatNotification {
+  -api_key: str
+}
+class SlackNotification {
+  -api_key: str
+}
+class EmailNotification {
+  -from_email: str
+}
+
+interface Notification {
+  +void notify(Message message)
+}
+
+Notification --> Message: Uses
+Notification <|.. GChatNotification: Implements
+Notification <|.. SlackNotification: Implements
+Notification <|.. EmailNotification: Implements
+
+@enduml
