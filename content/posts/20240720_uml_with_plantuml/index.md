@@ -5,7 +5,7 @@ draft: false
 sidebar: true
 slug: 20240720_uml_with_plantuml
 thumbnail:
-  src: "img/thumbnails/default_thumbnail.jpg"
+  src: "img/thumbnails/20240720_uml_with_plantuml.jpg"
   visibility:
     - list
 categories:
