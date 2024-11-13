@@ -1,0 +1,44 @@
+@startuml Notification Flow
+title "Diagrama de sequência do fluxo de envio de notificações para clientes"
+autonumber
+
+participant Aplicação as app
+participant NotificationAPI as api
+database NotificationDB as db
+participant NotificationWorker as worker
+participant "SNS (AWS)" as sns #LightSeaGreen
+
+alt Notificação Imediata
+    app->api: Solicitação do envio de\numa notificação imediata
+    activate api
+else Notificação Agendada
+    app->api: Solicitação do envio de\numa notificação agendada
+end
+
+api->db: Salva a solicitação (begin transaction)
+activate db
+alt Notificação Imediata
+    api->sns: Solicita o envio da notificação
+    activate sns
+    sns-->api: Solicitação concluída
+    deactivate sns
+end
+
+api->db: Commit transaction
+db-->api: Solicitação salva
+deactivate db
+api-->app: Notificação enviada/agendada
+deactivate api
+
+note over db, sns: Processamento assíncrono
+worker->db: Assincronamente lê notificações agendadas
+activate worker
+db-->worker: Notificações agendadas para um determinado horário
+worker->sns: Solicita o envio da notificações
+activate sns
+sns-->worker: Solicitações concluídas
+deactivate sns
+worker->db: Atualiza o status das notificações \nagendadas do horário determinado
+db-->worker: Notificações atualizadas
+deactivate worker
+@enduml

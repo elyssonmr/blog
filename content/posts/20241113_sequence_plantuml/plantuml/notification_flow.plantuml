@@ -1,0 +1,23 @@
+@startuml Notification Flow
+title "Diagrama de sequência do fluxo de envio de notificações para clientes"
+autonumber
+
+participant Aplicação as app
+participant NotificationAPI as api
+database NotificationDB as db
+participant "SNS (AWS)" as sns #LightSeaGreen
+
+app->api: Solicitação do envio de\numa notificação imediata
+activate api
+api->db: Salva a solicitação (begin transaction)
+activate db
+api->sns: Solicita o envio da notificação
+activate sns
+sns-->api: Solicitação concluída
+deactivate sns
+api->db: Commit transaction
+db-->api: Solicitação salva
+deactivate db
+api-->app: Notificação enviada
+deactivate api
+@enduml
