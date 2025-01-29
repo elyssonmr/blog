@@ -1,0 +1,20 @@
+@startuml
+!include <C4/C4_Container>
+
+LAYOUT_WITH_LEGEND()
+
+title Diagrama de containers do sistema de consulta de Ações
+
+Container_Ext(client_system, "Sistema Cliente", "REST", "Sistema que realizará consultas a tickers da bolsa de valores")
+System_Boundary(system, "Sistema de consulta a valores de Ações") {
+    Container(api, "API Consulta Valores de Ações", "Python, FastAPI", "API para realizar a consulta do valores de ações")
+    ContainerDb(cache, "Cache", "Redis", "Cache dos valores consultados")
+}
+Container_Ext(stock_system, "Sistema da bolsa de valores", "Rest API", "Sistema da bolsa de valores")
+
+Rel_D(client_system, api, "Utiliza o Sistema", "HTTPS")
+
+Rel_D(api, cache, "Lê e salva valores das ações", "")
+Rel_R(api, stock_system, "Consulta valores das ações", "HTTPS")
+
+@enduml

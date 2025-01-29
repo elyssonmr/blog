@@ -1,0 +1,24 @@
+@startuml
+!include <C4/C4_Container>
+
+LAYOUT_WITH_LEGEND()
+
+title Diagrama de containers do sistema de despacho de pacotes
+
+Person(operator, "Operador")
+System_Boundary(system, "Sistema de despacho de pacotes") {
+    Container(api, "API Despachador de Pacotes", "Python, FastAPI", "API para realizar o despacho de pacotes")
+    Container(web_app, "Frontend Despachador de pacotes", "Next.js", "Frontend para realizar registro do despacho de pacotes")
+    ContainerDb(db, "Banco de Dados", "MySQL", "Banco de dados para o registro dos despachos")
+    Container(worker, "Worker de Fallback", "Python", "Worker que de tempos em tempos fará a leitura das etiquetas não geradas para realizar uma nova tentativa de gerar")
+}
+Container_Ext(tag_system, "Sistema de Etiquetas", "Rest API", "Sistema gerador de etiquetas para remessas de pacotes")
+
+Rel_D(operator, web_app, "Utiliza o Sistema", "HTTPS")
+Rel_D(web_app, api, "Utiliza a API", "HTTPS")
+Rel_D(api, db, "Lê e Salva Dados", "")
+Rel_L(worker, db, "Lê e Salva Dados")
+Rel_R(api, tag_system, "Gera Etiquetas", "HTTPS")
+Rel_R(worker, tag_system, "Realiza uma nova tentativa de gerar etiquetas", "HTTPS")
+
+@enduml
