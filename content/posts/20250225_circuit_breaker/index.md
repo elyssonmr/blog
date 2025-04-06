@@ -92,6 +92,8 @@ A técnica de circuit breaker usada por si só, pode não ser interessando para 
 
 Circuit Breaker é um padrão simples e bem eficiente para proteger a chamada a recursos caros. Da mesma forma que protege as instalações elétricas. Isso faz com que ele seja facilmente utilizado em diversas partes do sistema que estamos desenvolvendo.
 
+A algum tempo eu fiz uma apresentação sobre circuit breaker. Você pode conferi-la [aqui](https://docs.google.com/presentation/d/1wcCNwVyk38yX8AiubNNU6OTKldkxqi6qafwYB84PDuU/edit?usp=sharing).
+
 **Referencias:**
 
 * [https://martinfowler.com/bliki/CircuitBreaker.html](https://martinfowler.com/bliki/CircuitBreaker.html)
