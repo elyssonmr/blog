@@ -32,7 +32,7 @@ A integração via arquivos, a grosso modo, é bem simples. Uma aplicação gera
 
 Este tipo de integração pode ser bem simples ou bem complicado, vai depender um pouco dos requisitos. Por exemplo, temos um sistema que faz o controle de ponto dos funcionários de uma determinada empresa, este sistema vai gerar um arquivo contendo as informações de entradas e saídas de cada um dos funcionários para que o sistema que calcula o salário possa realizar os cálculos necessários e somar qual o valor do salário de cada funcionário. O sistema de calculo vai monitorar a pasta de output do sistema de ponto e caso um novo arquivo seja salvo, ele irá processa-lo gerando a folha de pagamento em pasta de output.
 
-Em um exemplo mais complexo, podemos utilizar servidores de {{<assetnewtab src="https://pt.wikipedia.org/wiki/Protocolo_de_Transfer%C3%AAncia_de_Arquivos" title="FTP (File Transfer Protocol)">}} ou serviços de armazenamento de arquivos como o {{<assetnewtab src="https://aws.amazon.com/pt/s3" title="S3 da AWS">}} ao invés de pastas de arquivos, desta forma os sistemas não precisam estar na mesma máquina.
+Em um exemplo mais complexo, podemos utilizar servidores de {{<externalnewtab src="https://pt.wikipedia.org/wiki/Protocolo_de_Transfer%C3%AAncia_de_Arquivos" title="FTP (File Transfer Protocol)">}} ou serviços de armazenamento de arquivos como o {{<externalnewtab src="https://aws.amazon.com/pt/s3" title="S3 da AWS">}} ao invés de pastas de arquivos, desta forma os sistemas não precisam estar na mesma máquina.
 
 A integração via arquivo possui algumas vantagens:
 
@@ -66,7 +66,7 @@ Dentre outros.
 
 # Exemplo prático
 
-Montei um exemplo prático para demonstrar essa integração ocorrendo. vou disponibiliza-lo pelo {{<assetnewtab src="https://gist.github.com/elyssonmr/b23bbfa4345300597d649a9ae74f316c" title="gist">}} para que você possa estudar o código e até mesmo estende-lo aplicando novas funcionalidades.
+Montei um exemplo prático para demonstrar essa integração ocorrendo. vou disponibiliza-lo pelo {{<externalnewtab src="https://gist.github.com/elyssonmr/b23bbfa4345300597d649a9ae74f316c" title="gist">}} para que você possa estudar o código e até mesmo estende-lo aplicando novas funcionalidades.
 
 Não vou entrar em detalhes de toda implementação, mas caso tenha dúvidas por favor deixa um comentário que respondo assim que possível.
 
@@ -102,7 +102,7 @@ Ainda na aplicação `02_pdf_writer` também gostaria de destacar a função que
 
 Se as aplicações não estivessem fazendo uma simulação, alguém receberia um email com o PDF de invoice anexado. Caso tenha curiosidade de ver o PDF antes de executar a aplicação, basta {{<assetnewtab src="assets/invoice_175315440531605_kristenorr@elyblog.com.pdf" title="visualizar este exemplo">}}. Outra forma é deixar de executar a aplicação para o envio de email e vizualizar um dos PDFs gerados.
 
-Recomendo executar as aplicações (exemplos de comandos estão dentro do gist) e estudar o código para entender melhor a arquitetura de integração via arquivos. {{<assetnewtab src="https://gist.github.com/elyssonmr/b23bbfa4345300597d649a9ae74f316c" title="Link para o gist">}}.
+Recomendo executar as aplicações (exemplos de comandos estão dentro do gist) e estudar o código para entender melhor a arquitetura de integração via arquivos. {{<externalnewtab src="https://gist.github.com/elyssonmr/b23bbfa4345300597d649a9ae74f316c" title="Link para o gist">}}.
 
 # Conclusão
 
@@ -114,4 +114,4 @@ Com o exemplo apresentado no artigo, pode-se ter uma ideia de como esta arquitet
 
 **Fontes**
 
-* {{<assetnewtab src="https://pecepoli.com.br/m_files/00047880_000256_monografia01.pdf" title="Análise da Arquitetura de Software Para Interoperabilidade Entre Sistemas Via Arquivos">}}
+* {{<externalnewtab src="https://pecepoli.com.br/m_files/00047880_000256_monografia01.pdf" title="Análise da Arquitetura de Software Para Interoperabilidade Entre Sistemas Via Arquivos">}}
