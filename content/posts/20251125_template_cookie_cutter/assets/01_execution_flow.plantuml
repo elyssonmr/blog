@@ -1,0 +1,11 @@
+@startuml Fluxo Execução Template Cookie Cutter
+
+title Fluxo de Execução de um Template
+start
+:Hook de Pré Prompt;
+:Perguntas do Prompt de configuração;
+:Hook de Pré Geração de Template;
+:Renderização do Template;
+:Hook de Pós Geração;
+stop
+@enduml

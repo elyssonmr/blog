@@ -19,7 +19,7 @@ tags:
 
 No [último post]({{< relref "/posts/20251015_project_tools" >}}) nós falamos sobre algumas ferramentas que auxiliam seus projetos de software com Python. Hoje vamos continuar falando sobre o mesmo assunto focando no Taskipy. O Taskipy é uma ferramenta que podemos criar comandos para nossos projetos, este comandos auxiliam a simplificar outros comandos complexos que usamos no dia a dia, como: comandos para rodar testes, incrementar versão, executar lint e etc. Neste post vamos explorar um pouco mais profundamente esta ferramenta.
 
-<!-- more -->
+<!--more-->
 
 # Introdução
 

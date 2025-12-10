@@ -18,7 +18,7 @@ tags:
 
 Hoje vou trazer um assunto bem curioso que são as ferramentas que utilizo em meus projetos Python. Vou citar as ferramentas mais comuns que utilizo em projetos que trabalho e o que cada uma delas fazem no projeto. Não são muitas, mas ajudam demais com as tarefas de desenvolvimento de um projeto.
 
-<!-- more -->
+<!--more-->
 
 # Introdução
 

@@ -18,7 +18,7 @@ tags:
 
 No artigo de hoje vamos falar sobre uma técnica de integração de software, um tanto quanto antiga mas simples, que é a integração de sistemas por arquivos. Como de costume, nós iremos discutir sobre os conceitos envolvidos e também vou trazer um exemplo para vocês.
 
-<!-- more -->
+<!--more-->
 
 # Introdução
 
