@@ -113,4 +113,4 @@ Existem alguns casos em, por exemplo, linguagens dinâmicas que podem "esconder"
 
 A técnica de renomeação de métodos e funções possuí passos bem simples e permite pausas após cada uma das etapas permitindo ainda a execução da aplicação sem problemas.
 
-Fonte: {{<externalnewtab src="https://www.amazon.com.br/Refatora%C3%A7%C3%A3o-Aperfei%C3%A7oando-Design-C%C3%B3digos-Existentes/dp/8575227246" title="Refatoração - 2ª Edição">}}
+Fonte: {{<externalnewtab src="https://amzn.to/49WaSJu" title="Refatoração - 2ª Edição">}}
