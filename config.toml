@@ -26,6 +26,11 @@ googleAnalytics = "G-JVL66Z9J82"
   URL = "/"
   weight = -10
 
+[[menu.main]]
+  Name = "🛜 Fique Por Dentro"
+  URL = "/index.xml"
+  weight = 0
+
 [Params]
   # TOC
   toc = true
