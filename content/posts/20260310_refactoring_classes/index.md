@@ -5,7 +5,7 @@ draft: false
 sidebar: true
 slug: 20260310_refactoring_classes
 thumbnail:
-  src: "img/thumbnails/default_thumbnail.jpg"
+  src: "img/thumbnails/20260310_refactoring_classes.jpg"
   visibility:
     - list
 categories:
