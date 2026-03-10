@@ -1,6 +1,6 @@
 ---
 title: "Refatoração: Renomeação de Classes"
-date: "2026-03-09T16:39:29-03:00"
+date: "2026-03-10T12:00:00-03:00"
 draft: false
 sidebar: true
 slug: 20260310_refactoring_classes
