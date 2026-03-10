@@ -79,7 +79,7 @@ Teste!!
 
 Teste!!
 
-Agora podemos ir para o **terceiro passo** apagando o código dentro do método antigo (`SumNumbers`) e fazendo ela chamar a nova método (`sum_numbers`):
+Agora podemos ir para o **terceiro passo** apagando o código dentro do método antigo (`SumNumbers`) e fazendo ele chamar o novo método (`sum_numbers`):
 
 {{<figure src="images/03_call_old_to_new.png" title="Chamada da método antigo para a nova" legend="Chamada da método antigo para a nova">}}
 
