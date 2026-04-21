@@ -1,0 +1,7 @@
+@startuml Fluxo Conversão de video
+
+#003D5B:**Publisher**;
+#926C15:**Queue Name**; <<procedure>>
+#606C38:**Consumer**;
+
+@enduml

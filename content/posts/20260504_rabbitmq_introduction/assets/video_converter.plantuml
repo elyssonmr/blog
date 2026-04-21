@@ -1,0 +1,28 @@
+@startuml Fluxo Conversão de video
+
+title Fluxo de Execução do conversor
+
+autonumber
+
+participant Cliente as client
+participant Conversor as app
+participant RabbitMQ as rabbit
+participant "Conversor Worker" as worker
+
+client->app: Converter Vídeo
+activate app
+app->app: Salva video
+app->rabbit: Publica mensagem da conversão
+app->client: OK vídeo será processado
+deactivate
+
+
+note over client, worker: Processamento assíncrono
+worker->rabbit: Lê uma mensagem
+activate worker
+worker->worker: Realiza conversão
+worker->client: Notifica processamento concluído
+worker->rabbit: Confirma processamento da mensagem
+deactivate
+
+@enduml
