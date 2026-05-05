@@ -111,4 +111,4 @@ Nem todos os casos conseguimos fazer uma refatoração "passo a passo" ou a refa
 
 Assim como a técnica de renomeação de funções e métodos do [último artigo]({{< ref "/20260130_refactoring_functions" >}}), os passos da renomeação de Classes também são simples e fáceis de seguir. Também permite que a execução da aplicação sem precisar refatorar todas as ocorrência de uma vez só.
 
-Fonte: {{<externalnewtab src="https://amzn.to/49WaSJu" title="Refatoração - 2ª Edição">}}
+Fonte: Refatoração - 2ª Edição
