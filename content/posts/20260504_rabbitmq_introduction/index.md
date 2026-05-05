@@ -1,11 +1,11 @@
 ---
 title: "Introdução a Mensageria com RabbitMQ"
-date: "2026-05-04T12:00:00-03:00"
+date: "2026-05-05T12:00:00-03:00"
 draft: false
 sidebar: true
-slug: 20260504_rabbitmq_introduction
+slug: 20260505_rabbitmq_introduction
 thumbnail:
-  src: "img/thumbnails/default_thumbnail.jpg"
+  src: "img/thumbnails/20260505_rabbitmq_introduction.jpg"
   visibility:
     - list
 categories:
@@ -49,7 +49,7 @@ Até agora falamos de forma genérica sobre como a mensageria funciona. Agora va
 
 Conceitualmente, quando estamos lidando com mensagens, estamos lidando com 3 papeis principais: **Publishers** ("publicadores"), **Queues** (filas) e **Consumers/Subcribers** (consumidores). Para que a comunicação e processamento ocorra, é necessário ter pelo menos um de cada papel no sistema computacional.
 
-{{<figure src="images/02_plubisher_consumer.png" title="Publisher Consumer. Adaptado de: https://www.rabbitmq.com/tutorials/tutorial-one-python" legend="Publisher Consumer. Adaptado de: https://www.rabbitmq.com/tutorials/tutorial-one-python">}}
+{{<figure src="images/02_publisher_consumer.png" title="Publisher Consumer. Adaptado de: https://www.rabbitmq.com/tutorials/tutorial-one-python" legend="Publisher Consumer. Adaptado de: https://www.rabbitmq.com/tutorials/tutorial-one-python">}}
 
 **Publishers**, são sistemas que publicam as mensagens através de um **Message Broker**. O **Message Broker** irá receber esta mensagem e roteá-la (veremos sobre isto mais abaixo no artigo) para uma **Queue** que armazenará esta mensagem em ordem de chegada. O **Consumer** que estiver consumindo a fila, irá receber cada mensagem da fila para ser processada, ao final ele pode confirmar (ACK de Acknowledge) ou não confirmar (NACK de NotAcknowledge) a mensagem. Caso o consumo seja com sucesso (ACK) o **Broker** irá remover esta mensagem da fila e enviar a próxima mensagem. Então todo o ciclo de consumo se repete até não haver mais mensagens. Para o caso da não confirmação (NACK), ele irá enviar a mensagem para outro worker, caso haja, ou tentar enviar para o mesmo novamente.
 
@@ -63,7 +63,7 @@ Para publicar uma mensagem é necessário a mensagem propriamente dita e uma **R
 1. **Direct**: Este tipo exchange publica a mensagem direto na fila. Caso nenhum exchange seja criado ou utilizado, o Direct será utilizado automaticamente. Neste exchange, a **Routing Key** é utilizada contendo o nome exato da fila;
 2. **Fanout**: Este tipo exchange multiplica a mensagem em diversas filas, ou seja, uma única mensagem é enviada e uma copia é publicada uma ou mais filas que estejam associadas com este exchange. A **Routing Key** neste caso é o nome do exchange. Para criar este exchange, devemos fazer o **Bind** das filas nele, após este bind que ela irão começar a receber copias das mensagens publicadas;
 3. **Headers**: Este tipo de exchange publica mensagens baseadas no header da mensagem permitindo realizar um roteamento mais complexo da mensagem. Neste exchange a **Routing Key** é ignorada complemente, sendo utilizado somente os headers da mensagem enviada.
-4. **Topics**: Este tipo de exchange, roteia a mensagem baseado em um padrão entre a **Routing Key** e o bind em uma fila. Para ficar mais fácil de entender, podemos comparar com portais de noticias onde iremos nos inscrever para receber noticias de esportes em todas modalidades ("esportes.#"), noticias de futebol ("esportes.futebol.#") ou noticias do Flamengo ("esportes.futebol.flamengo"). Ele pode publicas em uma ou mais filas a depender da configuração de bind de cada fila no exchange;
+4. **Topics**: Este tipo de exchange, roteia a mensagem baseado em um padrão entre a **Routing Key** e o bind em uma fila. Para ficar mais fácil de entender, podemos comparar com portais de noticias onde iremos nos inscrever para receber noticias de esportes em todas modalidades ("esportes.#"), noticias de futebol ("esportes.futebol.#") ou noticias do Flamengo ("esportes.futebol.flamengo"). Ele pode publicar em uma ou mais filas a depender da configuração de bind de cada fila no exchange;
 5. **x-local-random**: Este tipo de exchange é desenhado para cenários onde é necessário processamento muito rápido. Ele garante que a mensagem vai ser enviada para uma fila local da instância do broker que recebeu a conexão (é possível conectar-se em um cluster de brokers), garantindo um tempo menor de latência para publicar. Nele é possível fazer o bind de múltiplas filas, neste caso, como o próprio nome diz, a mensagem será publicada aleatoriamente em uma destas filas. A **Routing Key** é o nome do exchange. Particularmente nunca utilizei este tipo de exchange, já passei por cenários que era necessário muito volume de publicações e/ou leituras, mas os demais exchanges já estavam com um desempenho bem satisfatório;
 
 Após a mensagem ser enviada através do canal e ser roteada pelo exchange ela vai ser armazenada em uma **Queue**. Existem três tipos de filas e diversas configurações que podemos fazer e criar "novos" tipos de fila:
@@ -79,7 +79,7 @@ Quase todos (se não todos) tipos de fila possuem algumas configurações que mu
 * **Message TTL**: Tempo de vida da mensagem em milissegundos. Após o tempo se esgotar, a mensagem é deletada automaticamente da fila. Pode ser util em alguns cenários, mas nunca utilizei esta configuração nos projetos em que trabalhei;
 * **Max Length Bytes**: Tamanho máximo do corpo da mensagem em bytes. Configuração que reforça boas práticas, não é muito interessante enviar mensagens longas para o RabbitMQ, primeiro que ela ocupa muito espaço para armazenar e segundo que o tempo de transferência pode adicionar um delay no processamento. Claro que vão existir cenários que não terá como fugir, para outros cenários, configurar um limite pode ser interessante;
 
-Os consumidores se conectam, através de um canal, diretamente a uma fila para receber as mensagens enviadas. Sempre quando houver uma nova mensagem na fila ela é enviada para um dos consumidores conectados a fila. Ao se conectar a uma fila para processar as mensagens é possível escolher quantas mensagens serão recebidas a cada vez através da configuração **Pre Fetch Count** com a definição do número de mensagens que são recebidas de uma vez só. Algumas bibliotecas implementam valores padrões sendo dependente da implementação da biblioteca. COnfigurar um pré fetch de 20 mensagens, significa que toda vez que o consumidor for verficar por novas mensagens, até 20 serão enviadas. Desta forma podemos reduzir a quantidade de vezes que o consumidor vai no broker recuperar mensagens.
+Os consumidores se conectam, através de um canal, diretamente a uma fila para receber as mensagens enviadas. Sempre quando houver uma nova mensagem na fila ela é enviada para um dos consumidores conectados a fila. Ao se conectar a uma fila para processar as mensagens é possível escolher quantas mensagens serão recebidas a cada vez através da configuração **Pre Fetch Count** com a definição do número de mensagens que são recebidas de uma vez só. Algumas bibliotecas implementam valores padrões sendo dependente da implementação da biblioteca. Configurar um pré fetch de 20 mensagens, significa que toda vez que o consumidor for verificar por novas mensagens, até 20 serão enviadas. Desta forma podemos reduzir a quantidade de vezes que o consumidor vai no broker recuperar mensagens.
 
 Não existe um número mágico para as mensagens de pré fetch, mas um número muito grande e um muito pequeno pode ser algo ruim. Buscando muitas mensagens consome mais rede para transmitir estas mensagens mas enquanto o worker processa estas mensagens a rede pode ficar ociosa. Um número muito pequeno causa uma alta utilização da rede para fins de buscar mais vezes por mensagens, não irá consumir tanto a rede pois cada mensagens pequena será rápida de ser transmitida porém o consumo será com conexões ocupadas buscando mensagens em curtos períodos de tempo. Normalmente utilizo o valor padrão da biblioteca que estou utilizando, raras vezes precisei trocar a quantidade.
 
@@ -87,13 +87,13 @@ Para ficar bem explicado sobre como o pré fetch funciona, vou levantar um cená
 
 * Existe uma fila de pedidos de peças com 100 mensagens nela. Um worker vai começar a consumir as mensagens com 10 mensagens configuradas no pré fetch.
 
-Este worker vai receber 10 mensagens de uma vez do RabbitMQ, porém ele vai processar uma a uma. Restando 80 mensagens na fila que prontas para ser enviadas para outro worker ou novamente para o mesmo worker quando ele terminar de confirmar (ACK) ou não (NACK) as 20 mensagens.
+Este worker vai receber 10 mensagens de uma vez do RabbitMQ processando uma a uma. Restando 90 mensagens na fila que prontas para ser enviadas para outro worker ou novamente para o mesmo worker quando ele terminar de confirmar (ACK) ou não (NACK) as 10 mensagens.
 
 {{<figure src="images/03_rabbit_queue.png" title="Fila com 100 mensagens e pre fetch de 10 mensagens" legend="Fila com 100 mensagens e pre fetch de 10 mensagens">}}
 
 Dependendo da frequência e tamanho das mensagens, vale a pena configurar a quantidade de pré fetch do worker.
 
-O RabbitMQ é um sistema muito robusto e além disso ele implementa alguns mecanismos para garantir a sua disponibilidade. Vou falar sobre o **Wartermark** este é um mecanismo que a medida que o Host do RabbitMQ fica com recursos escassos, como a memória RAM por exemplo, ele ativa um alarme que não permite o envio de novas mensagens e bloqueia as conexões que estão enviando mensagens. A ideia deste alarme é garantir a saúde da aplicação, o envio será bloqueado até que o consumo das mensagens reduza a quantidade de memória utilizada pelo RabbitMQ. Quando o consumo cair abaixo do watermark, o envio volta ao normal automaticamente. Já tive um problema com isso e custou entender o porque as mensagens não estava sendo enviadas, estou falando sobre ele justamente para que caso ocorra contigo você possa investigar se o consumo das mensagens esta OK. Para saber mais confira {{<externalnewtab title="este link" src="https://www.rabbitmq.com/docs/memory">}}.
+O RabbitMQ é um sistema muito robusto e além disso ele implementa alguns mecanismos para garantir a sua disponibilidade. Vou falar sobre o **Wartermark** este é um mecanismo em que a medida que o Host do RabbitMQ fica com recursos escassos, como a memória RAM por exemplo, ele ativa um alarme que não permite o envio de novas mensagens e bloqueia as conexões que estão enviando mensagens. A ideia deste alarme é garantir a saúde da aplicação, o envio será bloqueado até que o consumo das mensagens reduza a quantidade de memória utilizada pelo RabbitMQ. Quando o consumo cair abaixo do watermark, o envio volta ao normal automaticamente. Já tive um problema com isso e custou entender o porque as mensagens não estava sendo enviadas, estou falando sobre ele justamente para que caso ocorra contigo você possa investigar se o consumo das mensagens esta OK. Para saber mais confira {{<externalnewtab title="este link" src="https://www.rabbitmq.com/docs/memory">}}.
 
 Com isso cobrimos os principais conceitos do funcionamento do RabbitMQ. Neste artigo não vou abordar um exemplo, pois nos próximos quero trazer exemplos de cada tipo de fila e de consumo.
 
@@ -114,15 +114,15 @@ Trabalhando com mensageria trás algumas vantagens, muitas delas é por simplesm
 
 ## Desvantagens
 
-Como sempre dizem: "Nem tudo são flores". Temos algumas desvantagens também, mas estas desvantagens podem ser resolvidas sem muitos problemas. Também vou listar algumas e explicar sobre elas:
+Como sempre dizem: "Nem tudo são flores". Temos algumas desvantagens também, mas estas desvantagens podem ser resolvidas sem muitos esforços. Também vou listar algumas e explicar sobre elas:
 
-* **Complexidade Operacional**. Adicionar um broker também adiciona um novo componente que precisa de instalação, configuração, manutenção e monitoramento (exemplo: gerenciar filas, retenção de mensagens, throughput e etc);
+* **Complexidade Operacional**. Adicionar um broker também adiciona um novo componente que precisa de instalação, configuração, manutenção e monitoramento (exemplo: gerenciar filas, retenção de mensagens, throughput e etc) na arquitetura do sistema;
 * **Ponto Único de Falha**. Se o broker falhar, a comunicação entre os sistemas será interrompida potencialmente causando a indisponibilidade de funcionalidades dos sistemas. Seu sistema precisa lidar com este tipo de situação;
 * **Consistência Eventual**. Devido ao processamento ser assíncrono, os sistemas podem ter dados desatualizados até que as mensagens sejam processadas, levando a inconsistências temporárias;
 * **Dificuldade em Debbugar**. Analisar uma requisição entre múltiplos serviços assíncronos para identificar causa raiz de um problema é bem complexo. É necessário verificar todos os produtores e consumidores que fazem parte do processamento da requisição para identificar o problema;
 * **Latência Aumentada**. A mensagem precisa, sair do produtor até o broker, depois do broker até o consumidor. Isto adiciona um pouco de overhead em comparação da chamada direta a outro serviço;
-* **Lidando com Desafios**. Garantir que a mensagem seja processada somente uma vez (sem processamentos duplicados) ou cenários que a mensagem é perdida requer uma configuração bem acertada das aplicações e do broker. OBS: Uma mensagem pode ser processada mais de uma vez quando o processamento do consumidor ocorre, mas após salvar tudo ele retorna um NACK para o broker. Desta forma o broker enviará a mensagem para outro consumidor processar;
-* **Curva de Aprendizado Elevada**. Brokers diferentes possuem padrões diferentes que precisam de conhecimentos específicos para implementa-los apropriadamente;
+* **Lidando com Desafios**. Garantir que a mensagem seja processada somente uma vez (sem processamentos duplicados) ou cenários que a mensagem é perdida requer uma configuração bem acertada das aplicações e do broker. OBS: Uma mensagem pode ser processada mais de uma vez quando o processamento do consumidor ocorre, mas após salvar tudo ele retorna um NACK para o broker. Desta forma o broker enviará a mensagem para outro consumidor processar e ele pode salvar novamente os dados;
+* **Curva de Aprendizado Elevada**. Brokers diferentes possuem padrões diferentes que precisam de conhecimentos específicos para implementa-los apropriadamente. Conceitualmente são bem parecidos, mas a implementação não é tão parecida assim;
 
 # Conclusão
 

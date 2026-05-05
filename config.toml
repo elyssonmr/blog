@@ -99,6 +99,6 @@ googleAnalytics = "G-JVL66Z9J82"
 [[Params.widgets.social.custom]]
   title = "Minha página"
   icon = "svg/author.svg"
-  url = "http://elyssonmr.com"
+  url = "https://elyssonmr.com"
 
 sidebarRecentLimit = 5
