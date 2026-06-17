@@ -1,0 +1,18 @@
+@startuml Fluxo de pedido de lanches
+
+title Fluxo de pedido de lanches
+
+autonumber
+
+participant Cliente as client
+participant Lanchonete as app
+
+client->client: Escolhe um lanche
+activate app
+client->app: Liga na lanchonete para pedir o lanche
+app->app: Anota pedido
+app->app: Envia para preparo
+app->client: Avisa que já esta sendo preparado
+deactivate
+
+@enduml
