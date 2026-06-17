@@ -111,7 +111,7 @@ No endpoint nós vamos receber o pedido, criar um dump dele (converter para dict
 
 {{<figure src="images/05_api.png" title="API para pedir lanche" legend="API para pedir lanche">}}
 
-Para executar, precisamos rodar o comando `fastapi dev api.py` e o servidor de desenvolvimento estará em execução. Agora podemos testar acessando os {{<externalnewtab src="localhost:8000/docs" title="docs">}} da aplicação e fazer algumas requests.
+Para executar, precisamos rodar o comando `fastapi dev api.py` e o servidor de desenvolvimento estará em execução. Agora podemos testar acessando os {{<externalnewtab src="http://localhost:8000/docs" title="docs">}} da aplicação e fazer algumas requests.
 
 Após executar algumas vezes, podemos verificar na interface administrativa do RabbitMQ as mensagens publicadas na fila. para acessar esta interface, precisamos primeiro executar docker compose que está no link do projeto e então abrir a url: {{<externalnewtab src="http://localhost:15672/">}} e logar com o usuário `admin` e senha `admin` (configurados no docker compose).
 
@@ -147,7 +147,7 @@ Temos a função que vai realizar as configurações e iniciar o processo de con
 
 {{<figure src="images/09_consumer.png" title="Consumidor" legend="Consumidor">}}
 
-Agora já somos capazes de consumir as mensagens da fila. Se você executar o consumidor através do comando `python consumer.py` ele vai começar a consumir as mensagens da fila. O sleep longo, foi proposital para você ter a chance de simular mais de um cozinheiro.
+Agora já somos capazes de consumir as mensagens da fila. Se você executar o consumidor através do comando `python kitchen_consumer.py` ele vai começar a consumir as mensagens da fila. O sleep longo, foi proposital para você ter a chance de simular mais de um cozinheiro.
 
 Para ficar 100% dentro do nosso exemplo, ficou faltando um ponto importante, precisamos disparar uma nova mensagem para a fila de entregas. Existem algumas formas de fazer, a mais fácil é instanciar um novo client durante o processamento da mensagem para conseguirmos enviar a mensagem que precisamos. Porém vamos utilizar uma forma mais elegante que é utilizando {{<externalnewtab src="https://docs.python.org/3/library/functools.html#functools.partial" title="partials">}}. Basicamente vamos criar uma nova função a partir da função `prepare_snack`, onde vamos "parcialmente" passar o argumento com o client do RabbitMQ. Vamos precisar adicionar como primeiro argumento o client. Na função vamos simular a preparação e adicionar a chamada para publicar uma nova mensagem na fila de entregas. Após a declaração, vamos utilizar o partial para criar a nova função. Esta nova função será a que vamos utilizar no método consume do client. O código na integra fica assim:
 
@@ -169,4 +169,4 @@ Ao longo do exemplo, construímos:
 
 Utilizar o exchange default (direct) é simples, direto e resolve diversos cenários do dia a dia. Porém o RabbitMQ tem mais formas de publicar mensagens que vamos explorar em artigos futuros.
 
-Aproveite o desafio proposto no artigo para praticar como criar filas, publicar mensagens e até mesmo desenvolver um pouco mais o exemplo que fizemos. Você partir do {{<externalnewtab src="https://github.com/elyssonmr/article_rabbitmq" title="repositório">}} para praticar.
+Aproveite o desafio proposto no artigo para praticar como criar filas, publicar mensagens e até mesmo desenvolver um pouco mais o exemplo que fizemos. Você pode partir do {{<externalnewtab src="https://github.com/elyssonmr/article_rabbitmq" title="repositório">}} para praticar.
