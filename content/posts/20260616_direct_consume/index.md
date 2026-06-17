@@ -5,7 +5,7 @@ draft: false
 sidebar: true
 slug: 20260616_direct_consume
 thumbnail:
-  src: "img/thumbnails/default_thumbnail.jpg"
+  src: "img/thumbnails/20260616_direct_consume.jpg"
   visibility:
     - list
 categories:
