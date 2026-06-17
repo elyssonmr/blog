@@ -1,0 +1,17 @@
+@startuml Fluxo de entrega de lanches
+
+title Fluxo de entrega de lanches
+
+autonumber
+
+
+participant Cozinha as kitchen
+participant Lanchonete as app
+participant Entregador as delivery
+
+kitchen->app: Entrega lanche pronto
+app->delivery: Solicita entrega
+delivery->delivery: Realiza entrega
+delivery->app: Entrega Realizada
+
+@enduml

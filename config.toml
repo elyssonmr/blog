@@ -18,6 +18,9 @@ googleAnalytics = "G-JVL66Z9J82"
     startLevel = 1
   [markup.highlight]
     style = "solarized-dark"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 # MAIN MENU
 
