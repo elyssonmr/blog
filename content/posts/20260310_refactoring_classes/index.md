@@ -16,7 +16,7 @@ tags:
   - "Software"
 ---
 
-No [último artigo]({{< ref "/20260130_refactoring_functions" >}}) eu mostrei uma técnica de refatoração que auxilia a fazer "baby steps" para refatorar funções e métodos. Neste artigo vamos continuar falando sobre refatoração, mas desta vez vou mostrar a técnica para classes.
+No [último artigo]({{< ref "/posts/20260130_refactoring_functions" >}}) eu mostrei uma técnica de refatoração que auxilia a fazer "baby steps" para refatorar funções e métodos. Neste artigo vamos continuar falando sobre refatoração, mas desta vez vou mostrar a técnica para classes.
 
 <!--more-->
 
@@ -28,7 +28,7 @@ Isto é aplicado a todo tipo de componente da aplicação, como: funções, clas
 
 No artigo de hoje vou mostrar como fazer uma refatoração em classes sem ser realizado um tudo ou nada.
 
-OBS: Não vou explicar muito sobre o porque da refatoração pois já foi explicado no [último artigo]({{< ref "/20260130_refactoring_functions" >}}).
+OBS: Não vou explicar muito sobre o porque da refatoração pois já foi explicado no [último artigo]({{< ref "/posts/20260130_refactoring_functions" >}}).
 
 # Aplicando a Técnica
 
@@ -109,6 +109,6 @@ Refatoração é algo comum em diversos projetos e no nosso dia a dia. Entender 
 
 Nem todos os casos conseguimos fazer uma refatoração "passo a passo" ou a refatoração "tudo ou nada", mas fazendo passo a passo ajuda a gerenciar melhor as alterações enquanto que a aplicação continua funcionando sem problemas.
 
-Assim como a técnica de renomeação de funções e métodos do [último artigo]({{< ref "/20260130_refactoring_functions" >}}), os passos da renomeação de Classes também são simples e fáceis de seguir. Também permite que a execução da aplicação sem precisar refatorar todas as ocorrência de uma vez só.
+Assim como a técnica de renomeação de funções e métodos do [último artigo]({{< ref "/posts/20260130_refactoring_functions" >}}), os passos da renomeação de Classes também são simples e fáceis de seguir. Também permite que a execução da aplicação sem precisar refatorar todas as ocorrência de uma vez só.
 
 Fonte: Refatoração - 2ª Edição

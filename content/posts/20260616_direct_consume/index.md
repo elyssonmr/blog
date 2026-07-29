@@ -18,7 +18,7 @@ tags:
   - "Mnesageria"
 ---
 
-Publicar mensagens diretamente em uma fila é uma das diversas maneiras que o RabbitMQ suporta. Neste artigo vamos continuar o assunto do [último artigo]({{< ref "/20260505_rabbitmq_introduction" >}}) falando sobre RabbitMQ e explorar com um exemplo prático.
+Publicar mensagens diretamente em uma fila é uma das diversas maneiras que o RabbitMQ suporta. Neste artigo vamos continuar o assunto do [último artigo]({{< ref "/posts/20260505_rabbitmq_introduction" >}}) falando sobre RabbitMQ e explorar com um exemplo prático.
 
 <!--more-->
 
@@ -29,7 +29,7 @@ O RabbitMQ possui diversas maneiras de publicarmos uma mensagem, hoje vamos expl
 
 # Direct Exchange
 
-Recapitulando do [último artigo]({{< ref "/20260505_rabbitmq_introduction#exchange-direct-id" >}}), o exchange direct publica uma mensagem direto em uma fila, ou seja, a Routing Key deve ser o nome da fila.
+Recapitulando do [último artigo]({{< ref "/posts/20260505_rabbitmq_introduction#exchange-direct-id" >}}), o exchange direct publica uma mensagem direto em uma fila, ou seja, a Routing Key deve ser o nome da fila.
 
 Este exchange, por ser o padrão, já vem criado. Não há a necessidade de declara-lo. Somente vamos precisar declarar a fila, caso ela ainda não exista. Quando chegarmos no exemplo prático, vamos detalhar mais como declarar e algumas configurações que podemos fazer.
 

@@ -17,7 +17,7 @@ tags:
   - "Webhook"
 ---
 
-No [último artigo]({{< ref "/20240311_webhook_site" >}}) falamos sobre o que é o [webhook.site](https://webhook.site/) e como podemos utiliza-lo em nossos testes. Neste artigo vou explorar um exemplo prático do uso webhook sendo enviado para o [webhook.site](https://webhook.site/).
+No [último artigo]({{< ref "/posts/20240311_webhook_site" >}}) falamos sobre o que é o [webhook.site](https://webhook.site/) e como podemos utiliza-lo em nossos testes. Neste artigo vou explorar um exemplo prático do uso webhook sendo enviado para o [webhook.site](https://webhook.site/).
 
 <!--more-->
 
@@ -104,7 +104,7 @@ Pronto!! a aplicação está rodando!!
 
 # Simulando um pagamento
 
-Vamos simular um pagamento utilizando o [webhook.site](https://webhook.site/). Primeiro precisamos acessa-lo para que ele gere uma nova URL única para utilizarmos nos nossos testes. Aqui gerou a url: [**https://webhook.site/2427bba8-211d-4d3e-a19f-85f3ab2a05e9**](https://webhook.site/2427bba8-211d-4d3e-a19f-85f3ab2a05e9) (quase certeza que ela não estará disponível caso você acesse). Caso esteja com dúvida nesse passo, consulte o [último artigo]({{< ref "/20240311_webhook_site" >}}).
+Vamos simular um pagamento utilizando o [webhook.site](https://webhook.site/). Primeiro precisamos acessa-lo para que ele gere uma nova URL única para utilizarmos nos nossos testes. Aqui gerou a url: [**https://webhook.site/2427bba8-211d-4d3e-a19f-85f3ab2a05e9**](https://webhook.site/2427bba8-211d-4d3e-a19f-85f3ab2a05e9) (quase certeza que ela não estará disponível caso você acesse). Caso esteja com dúvida nesse passo, consulte o [último artigo]({{< ref "/posts/20240311_webhook_site" >}}).
 
 Com a URL gerada, abra [Postman](https://www.postman.com/) para montarmos uma nova requisição. Para facilitar, estou disponibilizando uma {{< assetnewtab src="assets/WebhookExample.postman_collection.json" title="Collection">}} com a requisição pronta.
 
