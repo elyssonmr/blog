@@ -31,7 +31,7 @@ O RabbitMQ possui diversas maneiras de publicarmos uma mensagem, hoje vamos expl
 
 Recapitulando do [último artigo]({{< ref "/20260505_rabbitmq_introduction#exchange-direct-id" >}}), o exchange direct publica uma mensagem direto em uma fila, ou seja, a Routing Key deve ser o nome da fila.
 
-Este exchange, por ser o padrão, já vem criado. Não há a necessidade de declara-lo. Somente vamos precisar declarar a fila, caso ela ainda não exista. Quando falarmos chegarmos no exemplo prático, vamos detalhar mais como declarar e algumas configurações que podemos fazer.
+Este exchange, por ser o padrão, já vem criado. Não há a necessidade de declara-lo. Somente vamos precisar declarar a fila, caso ela ainda não exista. Quando chegarmos no exemplo prático, vamos detalhar mais como declarar e algumas configurações que podemos fazer.
 
 Para muitos cenários publicar diretamente na fila pode ser o suficiente. Ainda neste artigo vamos desenvolver um exemplo utilizando esta forma de publicar.
 
@@ -155,7 +155,7 @@ Para ficar 100% dentro do nosso exemplo, ficou faltando um ponto importante, pre
 
 Pronto, agora temos o nosso consumidor pronto e já publicando uma nova mensagem para a fila de entregas. Não iremos implementar o consumidor da entrega, mas a ideia dele é a mesma: criar uma função que receberá a mensagem, adicionar o código para processar esta mensagem e confirmar o processamento. Neste caso não vejo muitos motivos para utilizar o partial, mas talvez você queria notificar o sistema de pedidos de que o lanche foi entregue e pago. Como desafio, você pode pegar o código atual e implementar este consumidor.
 
-Todo o código que fizemos neste artigo está disponível neste {{<externalnewtab src="https://github.com/elyssonmr/article_rabbitmq" title="repositório">}}.
+Todo o código que fizemos neste artigo está disponível neste {{<externalnewtab src="https://github.com/elyssonmr/article_rabbitmq/tree/direct_exchange" title="repositório">}}.
 
 # Conclusão
 
