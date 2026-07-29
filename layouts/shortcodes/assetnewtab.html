@@ -1,4 +1,4 @@
-{{ $rest_asset := page.Resources.GetMatch (.Get "src") }}
+{{ $rest_asset := .Page.Resources.GetMatch (.Get "src") }}
 {{ $url_path := absURL ""}}
 {{ $relative_url := .Get "src" }}
 

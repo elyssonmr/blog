@@ -1,5 +1,5 @@
 baseURL = "/"
-languageCode = "pt-br"
+locale = "pt-br"
 title = "Blog do Ely"
 
 theme = 'mainroad'
@@ -8,8 +8,10 @@ sortTaxonomyAlphabetical = true
 authorname = "Élysson MR"
 favicon = "img/favicon.ico"
 
-DisqusShortname = "elyssonmr-blog"
-googleAnalytics = "G-JVL66Z9J82"
+[services.googleAnalytics]
+  ID = "G-JVL66Z9J82"
+[services.disqus]
+  shortname = "elyssonmr-blog"
 
 # MARKUP
 [markup]
