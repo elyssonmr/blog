@@ -60,6 +60,12 @@
 		</div>
 		{{ block "footer" . }}{{ partial "footer.html" . }}{{ end }}
 	</div>
+{{- if .HasShortcode "zoomfigure" }}
+{{- $lib := resources.Get "js/vendor/medium-zoom.min.js" }}
+{{- $init := resources.Get "js/zoomfigure.js" }}
+{{- $bundle := slice $lib $init | resources.Concat "js/zoomfigure.bundle.js" | fingerprint }}
+<script defer src="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}"></script>
+{{- end }}
 <script async defer src="{{ "js/menu.js" | relURL }}"></script>
 {{ range .Site.Params.customJS -}}
 <script src="{{ . | relURL }}"></script>

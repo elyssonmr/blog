@@ -1,0 +1,37 @@
+{{ $url_path := absURL "" }}
+
+{{ $res_img := .Page.Resources.GetMatch (.Get "src") }}
+{{ $url := "" }}
+{{ if $res_img }}
+  {{ $url = $res_img.RelPermalink }}
+{{ else }}
+  {{ $url = urls.JoinPath $url_path (.Get "src") }}
+{{ end }}
+
+{{ $zoom_url := "" }}
+{{ if .Get "zoomsrc" }}
+  {{ $res_zoom := .Page.Resources.GetMatch (.Get "zoomsrc") }}
+  {{ if $res_zoom }}
+    {{ $zoom_url = $res_zoom.RelPermalink }}
+  {{ else }}
+    {{ $zoom_url = urls.JoinPath $url_path (.Get "zoomsrc") }}
+  {{ end }}
+{{ end }}
+
+<div class="figure-wrapper">
+  <figure class="zoomfigure">
+    <img
+      class="zoomable"
+      src="{{ $url }}"
+      {{ with $zoom_url }}data-zoom-src="{{ . }}"{{ end }}
+      alt="{{ .Get "title" }}"
+      title="{{ .Get "title" }}"
+      loading="lazy"
+    >
+    {{ if .Get "legend" }}
+      <figcaption>
+        <p class="text-center">{{ .Get "legend" }}</p>
+      </figcaption>
+    {{ end }}
+  </figure>
+</div>

@@ -37,7 +37,7 @@ Diferentemente do Exchange Direct, o Fanout precisa ser criado e as filas devem 
 
 Uma curiosidade do nome é que o desenho representando o fanout parece com um ventilador (fan em inglês), onde ele suga o vento atrás do motor e o espalha ao joga-lo para frente.
 
-{{<figure src="images/01_fanout_scheme.png" title="Publicação Fanout" legend="Publicação Fanout. Adaptado de: https://www.rabbitmq.com/tutorials/tutorial-three-python">}}
+{{<zoomfigure src="images/01_fanout_scheme.png" title="Publicação Fanout" legend="Publicação Fanout. Adaptado de: https://www.rabbitmq.com/tutorials/tutorial-three-python">}}
 
 Esta forma de publicar mensagem, também é conhecida como Publish/Subscribe, ou seja, quem precisa receber a mensagem irá fazer um subscribe no tópico. Diferentemente do topic, todos os subscribers vão receber a mesma mensagem idêntica. Lembrando do exemplo da cozinha, caso dois cozinheiros estejam inscritos no fanout, ambos vão receber a mesma mensagem e dois pedidos idênticos serão produzidos.
 
@@ -45,7 +45,7 @@ Esta forma de publicar mensagem, também é conhecida como Publish/Subscribe, ou
 
 Para explicar o fanout, ainda podemos utilizar o {{<externalnewtab src="https://github.com/elyssonmr/article_rabbitmq/tree/direct_exchange" title="exemplo da lanchonete">}}. Quando um pedido for feito, vamos utilizar um fanout para notificar a cozinha e também notificar o sistema contábil para registrar a venda do lanche. O inicio do fluxo irá continuar o mesmo, somente alterando a publicação para ser um fanout ao invés de uma publicação direct.
 
-{{<figure src="images/02_order_flow.png" title="Fluxo do Pedido" legend="Fluxo do Pedido">}}
+{{<zoomfigure src="images/02_order_flow.png" title="Fluxo do Pedido" legend="Fluxo do Pedido">}}
 
 A lanchonete ainda continua recebendo diversos pedidos, sendo necessário enfileira-los para que a cozinha os consiga preparar e também envia-los para o sistema contábil da lanchonete. O processo da cozinha ainda continua manual, sendo os pedidos anotados no papel pelo atendente e então adicionados na fila de produção da cozinha. Já para o sistema contábil, como é um sistema computadorizado, não é necessário anotar e enviar para o setor. A mensagem publicada através do fanout, irá chegar no sistema automaticamente e ele vai processa-la sem problemas.
 
@@ -57,22 +57,22 @@ No {{<externalnewtab src="https://github.com/elyssonmr/article_rabbitmq/tree/dir
 
 Antes de alterarmos a API, vamos precisar criar um novo método no RabbitClient para declarar o Fanout Exchange. Este método irá receber o nome do exchange (vamos utilizar este nome como routing key) e declara-lo. Como ela é especifica vamos deixar hardcoded o tipo do exchange. Por enquanto não precisamos retornar o exchange criado. Da mesma forma que declaramos as filas no outro artigo, vamos utilizar um método da biblioteca que a quinta série não permite dizer o nome para declarar o exchange. Caso seja necessário, poderíamos fazer este método genérico passando também o tipo do exchange para o método, mas não é necessário agora.
 
-{{<figure src="images/03_declare_fanout_function.png" title="Método Declare Fanout Exchange" legend="Método Declare Fanout Exchange">}}
+{{<zoomfigure src="images/03_declare_fanout_function.png" title="Método Declare Fanout Exchange" legend="Método Declare Fanout Exchange">}}
 
 Legal, temos como declarar o fanout exchange, mas agora precisamos fazer o bind das filas nele. Para fazer o bind, vamos precisar declarar outro método no RabbitClient que fará o trabalho completo chamando o método que declara o exchange, declarando a fila (igual fizemos quando utilizamos o direct exchange) e por último fazendo o bind da fila no exchange utilizando o nome do exchange.
 
-{{<figure src="images/04_bind_queue_fanout_exchange.png" title="Método Bind Queue to Fanout Exchange" legend="Método Bind Queue to Fanout Exchange">}}
+{{<zoomfigure src="images/04_bind_queue_fanout_exchange.png" title="Método Bind Queue to Fanout Exchange" legend="Método Bind Queue to Fanout Exchange">}}
 
 
 A forma que fizemos temos o comportamento esperado que é criar o fanout exchange e fazer o bind de uma fila nele. Mas, podemos melhorar um pouco utilizando um único canal para declarar o fanout exchange, a fila e fazer o bind. O motivo para pensar nesta solução é por causa que o processo para declarar um um canal é um processo síncrono, ou seja, é um pouco custoso ficar abrindo canais, ainda mais que estamos abrindo e fechado ao final das chamadas. Manter o canal aberto é o mais indicado, mas para declarar uma fila não há a necessidade de abrir e fechar diversos canais. Além disso, objetos criados utilizando a biblioteca são correlacionados ao canal que foi usado para cria-los. Caso o canal esteja fechado, utilizar este objeto pode dar um erro indicando que o canal esta fechado, quebrando assim a aplicação e talvez tendo a necessidade de redeclarar o objeto para que ele seja associado a outro canal.
 
 Para ajustar, vamos modificar o método de declarar para também receber um channel como argumento tendo o valor default como `None`. Quando a intenção for somente declarar o exchange, o channel pode ser passado como `None` pois é criado um novo dentro da função para somente declarar o exchange. Caso seja passado um valor no parâmetro channel, vamos declarar o exchange utilizando este canal e retornar o exchange criado. Vou aproveitar este ajuste e adicionar **type hint** nos parâmetros/retorno que ficaram sem.
 
-{{<figure src="images/05_declare_fanout_exchange_refactored.png" title="Método Declare Fanout Exchange Ajustado" legend="Método Declare Fanout Exchange Ajustado">}}
+{{<zoomfigure src="images/05_declare_fanout_exchange_refactored.png" title="Método Declare Fanout Exchange Ajustado" legend="Método Declare Fanout Exchange Ajustado">}}
 
 Agora vamos ajustar o método `bind_queues_to_fanout_exchange` para passar o canal criado por parâmetro no método `declare_fanout_exchange` e então utilizar o exchange retornado para fazer o bind. Também vou aproveitar e adicionar uma facilidade para conservar recursos e aumentar o desempenho (lembrando da explicação logo acima sobre os canais) quando for declarar diversas filas para o exchange.
 
-{{<figure src="images/06_bind_queues_to_fanout_refactored.png" title="Método Bind Queue to Fanout Exchange Ajustado" legend="Método Bind Queue to Fanout Exchange Ajustado">}}
+{{<zoomfigure src="images/06_bind_queues_to_fanout_refactored.png" title="Método Bind Queue to Fanout Exchange Ajustado" legend="Método Bind Queue to Fanout Exchange Ajustado">}}
 
 Estamos utilizando o exchange para fazer o bind da fila ao invés do nome do exchange. Neste caso, nada muda entre utilizar o nome ou o exchange. Por debaixo dos panos, a biblioteca irá pegar o nome do exchange (string) para enviar para o RabbitMQ. Acabamos utilizando somente para respeitar a refatoração e deixar mais explicito qual o exchange devemos fazer o bind.
 
@@ -82,7 +82,7 @@ Uma tarefa para você: eliminar a duplicação da declaração de fila nos méto
 
 Ainda vamos modificar o RabbitClient um pouco mais. Precisamos agora criar um novo método para publicar utilizando fanout como routing key. Este método será parecido com o o método de publicar numa fila diretamente, a diferença é que não vamos precisar declarar a fila e sim o exchange. O método vai receber a mensagem a ser publicada e o routing key que nada mais é do que o nome do exchange.
 
-{{<figure src="images/07_publish_fanout.png" title="Método Publish Fanout" legend="Método Publish Fanout">}}
+{{<zoomfigure src="images/07_publish_fanout.png" title="Método Publish Fanout" legend="Método Publish Fanout">}}
 
 A publicação não tem muito segredo, ela é diferente somente o que declaramos para garantir que exista no broker.
 
@@ -92,7 +92,7 @@ Como o pedido também vai para a contabilidade, é necessário enriquecer um pou
 
 Para enriquecer a mensagem, vamos adicionar uma função para calcular um número aleatório entre 5 e 25 com duas casas decimais para simular que recuperamos o valor do banco de dados. Depois vamos converter este número para string (fica mais simples para trabalhar com valores monetários) para então fazer o dump do dict para json. Por último, trocaremos a função `publish_direct` para `publish_fanout` sem alterar os parâmetros passados pois elas possuem a mesma assinatura.
 
-{{<figure src="images/08_update_api.png" title="Ajuste na API" legend="Ajuste na API">}}
+{{<zoomfigure src="images/08_update_api.png" title="Ajuste na API" legend="Ajuste na API">}}
 
 ## Consumo Contabilidade
 
@@ -102,7 +102,7 @@ Vou pegar o mesmo código que fizemos no último artigo para o worker de consumo
 
 Primeiro eu vou copiar o arquivo do consumidor da cozinha `kitchen_consumer.py`, cola-lo e então renomear para `accountant_consumer.py`. No código do consumidor, vamos precisar adicionar a declaração do fanout juntamente com o bind da fila da contabilidade. Para isso vamos invocar a função `bind_queues_to_fanout_exchange` passando uma lista de filas somente com o nome `account_system` e o nome do fanout exchange `order_fanout`. Em seguida, podemos utilizar a função `consume` diretamente, pois este consumer não terá a necessidade de utilizar o client para enviar novas mensagens, ou seja, não iremos mais precisar do `partial` igual fizemos no consumidor da cozinha para também passar o client como argumento. Na imagem abaixo está o conteúdo total do consumidor da contabilidade:
 
-{{<figure src="images/09_accountant_consumer.png" title="Consumir da Contabilidade" legend="Consumir da Contabilidade">}}
+{{<zoomfigure src="images/09_accountant_consumer.png" title="Consumir da Contabilidade" legend="Consumir da Contabilidade">}}
 
 A parte de consumo mesmo sendo um fanout, permanece a mesma. O que mudou até agora foi o pré requisito para consumir as mensagens da fila, visto que elas precisam fazer o bind com o fanout exchange.
 
@@ -112,7 +112,7 @@ A partir deste momento já podemos testar a API e o consumidor recém criado. Vo
 
 O ajuste necessário no consumidor da cozinha é apenas fazer o bind da fila `kitchen` com o exchange, igual fizemos ao criar o consumidor da contabilidade. O restante irá permanecer o mesmo. Também vou mostrar o conteúdo total do consumidor:
 
-{{<figure src="images/10_kicthen_consumer.png" title="Consumir da Contabilidade" legend="Consumir da Contabilidade">}}
+{{<zoomfigure src="images/10_kicthen_consumer.png" title="Consumir da Contabilidade" legend="Consumir da Contabilidade">}}
 
 Finalizamos todo o código, mas gostaria de trazer umas curiosidades. As filas que fizemos o bind no fanout exchange também continuam com o bind no direct padrão porque todas as filas criadas no RabbitMQ fazem, automaticamente, o bind no exchange padrão. Este comportamento também se aplica se fizermos mais binds a outros exchanges, a mesma fila vai receber a mensagem de diversos exchanges que ela fez o bind.
 
@@ -136,31 +136,31 @@ python account_consumer.py
 
 Com os componentes levantados, os consumidores já irão se conectar no RabbitMQ e fazer os binds das filas ao fanout que foi criado. Podemos verificar as conexões clickando na aba **Connections** na interface administrativa do RabbitMQ:
 
-{{<figure src="images/11_admin_connections.png" title="Aba Connections no ADM do RabbitMQ" legend="Aba Connections no ADM do RabbitMQ">}}
+{{<zoomfigure src="images/11_admin_connections.png" title="Aba Connections no ADM do RabbitMQ" legend="Aba Connections no ADM do RabbitMQ">}}
 
 Repare que cada conexão tem 2 canais abertos, um canal é utilizado para consumir as mensagens e outro para publicar mensagens. Mesmo que um dos consumidores não utilize a publicação, o canal para publicar ainda assim é criado ao iniciar o RabbitClient. Aqui temos mais uma oportunidade de melhoria que deixarei de dever de casa para você.
 
 Antes de mostrar o fanout exchange criado, eu vou mostrar as filas. Devemos ter 3 filas: uma para cozinha, uma para entrega dos lanches e outra para o sistema de contabilidade.
 
-{{<figure src="images/12_admin_queues.png" title="Aba Queues no ADM do RabbitMQ" legend="Aba Queues no ADM do RabbitMQ">}}
+{{<zoomfigure src="images/12_admin_queues.png" title="Aba Queues no ADM do RabbitMQ" legend="Aba Queues no ADM do RabbitMQ">}}
 
 Abrindo a fila do sistema de contabilidade para mostrar os detalhes, conseguimos ver que existem dois binds nela: um do direct (onde todas as filas fazem bind automaticamente) e o bind do fanout que criamos.
 
-{{<figure src="images/13_admin_queue_detail.png" title="Detalhe de uma Fila" legend="Detalhe de uma Fila">}}
+{{<zoomfigure src="images/13_admin_queue_detail.png" title="Detalhe de uma Fila" legend="Detalhe de uma Fila">}}
 
 Clickando na aba exchanges, podemos ver o `order_fanout` que foi criado:
 
-{{<figure src="images/14_admin_exchanges.png" title="Aba Exchanges no ADM do RabbitMQ" legend="Aba Exchanges no ADM do RabbitMQ">}}
+{{<zoomfigure src="images/14_admin_exchanges.png" title="Aba Exchanges no ADM do RabbitMQ" legend="Aba Exchanges no ADM do RabbitMQ">}}
 
 Nos detalhes do `order_fanout` podemos ver quais as filas fizeram o bind nele:
 
-{{<figure src="images/15_exchange_detail.png" title="Aba Exchanges no ADM do RabbitMQ" legend="Aba Exchanges no ADM do RabbitMQ">}}
+{{<zoomfigure src="images/15_exchange_detail.png" title="Aba Exchanges no ADM do RabbitMQ" legend="Aba Exchanges no ADM do RabbitMQ">}}
 
 Agora que verificamos que tudo esta correto, podemos realizar o pedido de um lanche para testar. Vou fazer algumas chamadas na API e colar os outputs dos consumidores aqui:
 
-{{<figure src="images/16_output_kitchen.png" title="Output do Consumidor da Cozinha" legend="Output do Consumidor da Cozinha">}}
+{{<zoomfigure src="images/16_output_kitchen.png" title="Output do Consumidor da Cozinha" legend="Output do Consumidor da Cozinha">}}
 
-{{<figure src="images/17_output_accountant.png" title="Output do Consumidor da Contabilidade" legend="Output do Consumidor da Contabilidade">}}
+{{<zoomfigure src="images/17_output_accountant.png" title="Output do Consumidor da Contabilidade" legend="Output do Consumidor da Contabilidade">}}
 
 Lembre-se que as mensagens são publicadas com prioridades aleatórias, mas você pode perceber que todos os consumidores receberam uma copia da mensagem publicada no fanout e a processou de acordo com as regras de cada um.
 
