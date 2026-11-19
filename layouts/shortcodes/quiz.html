@@ -1,0 +1,41 @@
+{{- /*
+  Quiz graded by the Cloudflare Worker in /quiz-worker. The page only holds the
+  questions: the answer key lives in D1, so it cannot be read from the HTML.
+
+  Usage:
+    {{< quiz id="rabbitmq-fundamentos" >}}
+      {{< mcq id="q1" question="..." >}}
+      Option 1
+      Option 2
+      {{< /mcq >}}
+    {{< /quiz >}}
+
+  `id` must match quizzes.id in D1 and every mcq `id` must match questions.id.
+*/ -}}
+{{- $id := .Get "id" -}}
+{{- if not $id }}{{ errorf "quiz shortcode requires an id: %s" .Position }}{{ end -}}
+{{- $cfg := site.Params.quiz | default dict -}}
+{{- $endpoint := $cfg.endpoint -}}
+{{- if not $endpoint }}{{ errorf "quiz shortcode requires params.quiz.endpoint in config.toml: %s" .Position }}{{ end -}}
+<form class="quiz" data-quiz-id="{{ $id }}" data-endpoint="{{ $endpoint }}">
+  {{ .Inner }}
+  <div class="quiz__footer">
+    <label class="quiz__label" for="{{ $id }}-name">Nome para o certificado</label>
+    <input class="quiz__name" id="{{ $id }}-name" name="name" type="text"
+           minlength="3" maxlength="80" autocomplete="name" required>
+    <p class="quiz__hint">Seu nome é usado apenas para emitir o certificado.</p>
+    {{- with $cfg.turnstileSiteKey }}
+    <div class="cf-turnstile" data-sitekey="{{ . }}" data-language="pt-br"></div>
+    {{- end }}
+    <button type="submit" class="quiz__submit">Enviar respostas</button>
+    <div class="quiz__result" role="status" aria-live="polite" hidden></div>
+  </div>
+</form>
+{{- if not (.Page.Store.Get "quizAssets") }}
+{{- .Page.Store.Set "quizAssets" true }}
+{{- if $cfg.turnstileSiteKey }}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{{- end }}
+{{- $js := resources.Get "js/quiz.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end }}

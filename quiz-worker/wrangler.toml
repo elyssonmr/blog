@@ -1,0 +1,19 @@
+name = "quiz-worker"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Comma separated list of origins allowed to call the API (CORS).
+ALLOWED_ORIGINS = "https://blog.elyssonmr.com,http://blog.elyssonmr.com,http://localhost:1313"
+# Public blog URL printed on the certificate.
+BLOG_URL = "https://blog.elyssonmr.com"
+
+# Optional secret: when set, every submission must carry a valid Turnstile token.
+#   npx wrangler secret put TURNSTILE_SECRET
+
+[[d1_databases]]
+binding = "DB"
+database_name = "quiz-db"
+# Replace with the id printed by `npx wrangler d1 create quiz-db`.
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"

@@ -1,0 +1,21 @@
+{{- /*
+  Multiple choice question. Must be nested inside the quiz shortcode.
+  One option per line in the inner content; options are numbered from 1,
+  in the order written (that number is what goes into questions.answer).
+*/ -}}
+{{- $qid := .Get "id" -}}
+{{- if not $qid }}{{ errorf "mcq shortcode requires an id: %s" .Position }}{{ end -}}
+{{- if not .Parent }}{{ errorf "mcq %q must be inside a quiz shortcode: %s" $qid .Position }}{{ end -}}
+{{- $name := printf "%s__%s" (.Parent.Get "id") $qid -}}
+{{- $options := slice -}}
+{{- range split .Inner "\n" }}{{ with trim . " \t\r" }}{{ $options = $options | append . }}{{ end }}{{ end -}}
+{{- if lt (len $options) 2 }}{{ errorf "mcq %q needs at least 2 options: %s" $qid .Position }}{{ end -}}
+<fieldset class="quiz__question" data-question-id="{{ $qid }}">
+  <legend class="quiz__legend"><span class="quiz__number">{{ add .Ordinal 1 }}.</span> {{ .Get "question" | .Page.RenderString }}</legend>
+  {{- range $i, $opt := $options }}
+  <label class="quiz__option">
+    <input type="radio" name="{{ $name }}" value="{{ add $i 1 }}" required>
+    <span>{{ $opt | $.Page.RenderString }}</span>
+  </label>
+  {{- end }}
+</fieldset>
