@@ -61,6 +61,14 @@ favicon = "img/favicon.ico"
   post_meta = ["date"]
   customCSS = ["css/custom.css"]
 
+[Params.quiz]
+  # Cloudflare Worker that grades quizzes and issues certificates (see quiz-worker/).
+  # Local dev: HUGO_PARAMS_QUIZ_ENDPOINT=http://localhost:8787 hugo server  (or `make quiz_server`)
+  # Replace with the URL printed by `npm run deploy` in quiz-worker/.
+  endpoint = "https://quiz-worker.elyssonmr.workers.dev"
+  # Cloudflare Turnstile site key. Leave empty to disable the captcha widget.
+  turnstileSiteKey = ""
+
 [Params.logo]
   image = "img/favicon.ico"
   title = "Blog do Ely"
